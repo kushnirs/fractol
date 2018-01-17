@@ -6,7 +6,7 @@
 /*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:14:12 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/17 03:17:56 by sergee           ###   ########.fr       */
+/*   Updated: 2018/01/17 13:12:00 by sergee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,13 @@ typedef struct	s_mlx
 	double	im;
 }				t_mlx;
 
+void				draw_line(t_mlx *data, double x[2], double y[2], int color);
 int					key_action(int key, t_mlx *data);
 int					close_window(t_mlx *data);
 unsigned int		parse_color(int c1, int c2, double t);
 double				formula(double a, double b, double t);
 int 				mandelbrot();
+int					square();
 int					julia();
+int					tree();
 #endif

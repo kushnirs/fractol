@@ -6,7 +6,7 @@
 /*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 02:33:31 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/17 03:23:32 by sergee           ###   ########.fr       */
+/*   Updated: 2018/01/17 13:22:44 by sergee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ static void		draw_fract(t_mlx *data)
 				b = 2 * a * b + data->im;
 				a = lox;
 			}
-			data->data_adr[y * WIDTH + x] = parse_color(ft_hex_to_dec("2F4F4F") ,
-											ft_hex_to_dec("800000"), i * 6 % 256);
+			data->data_adr[y * WIDTH + x] = i * 6 % 256;
 		}
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->image, 0, 0);
