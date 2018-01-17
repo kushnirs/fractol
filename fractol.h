@@ -6,7 +6,7 @@
 /*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:14:12 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/16 16:41:50 by sergee           ###   ########.fr       */
+/*   Updated: 2018/01/17 03:17:56 by sergee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,19 @@ typedef struct	s_mlx
 	void	*mlx;
 	void	*win;
 	void	*image;
+	t_ui	*data_adr;
 	int		bpp;
 	int		sl;
 	int		endian;
-	t_ui	*data_adr;
+	double	index;
+	double	re;
+	double	im;
 }				t_mlx;
 
-
+int					key_action(int key, t_mlx *data);
+int					close_window(t_mlx *data);
+unsigned int		parse_color(int c1, int c2, double t);
+double				formula(double a, double b, double t);
+int 				mandelbrot();
+int					julia();
 #endif

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mandelbrot.c                                       :+:      :+:    :+:   */
+/*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/01/16 12:22:37 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/17 02:34:16 by sergee           ###   ########.fr       */
+/*   Created: 2018/01/17 02:33:31 by sergee            #+#    #+#             */
+/*   Updated: 2018/01/17 03:23:32 by sergee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,22 @@ static void		draw_fract(t_mlx *data)
 		while (++y < HIGH)
 		{
 			i = -1;
-			a = 0;
-			b = 0;
-			while ((a * a + b * b) < 4 && ++i < 256)
+			a = 1.5 * (x - WIDTH / 2) / (0.5 * data->index * WIDTH);
+			b = (y - HIGH / 2) / (0.5 *data->index * HIGH);
+			while ((a * a + b * b) < 4 && ++i < 2500)
 			{
-				lox = a * a - b * b + data->re + (x - WIDTH / 2) * data->index;
-				b = 2 * a * b + data->im + (y - HIGH / 2) * data->index;
+				lox = a * a - b * b + data->re;
+				b = 2 * a * b + data->im;
 				a = lox;
 			}
-			data->data_adr[y * WIDTH + x] = i * 25 % 256;
+			data->data_adr[y * WIDTH + x] = parse_color(ft_hex_to_dec("2F4F4F") ,
+											ft_hex_to_dec("800000"), i * 6 % 256);
 		}
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->image, 0, 0);
 }
 
-static int					mouse_action(int button, int x, int y, t_mlx *data)
+static int		mouse_action(int button, int x, int y, t_mlx *data)
 {
 	button == M_UP ? data->index -= data->index / 20 : 0;
 	button == M_UP ? data->re = formula(data->re, data->re +
@@ -55,11 +56,11 @@ static int					mouse_action(int button, int x, int y, t_mlx *data)
 	return (0);
 }
 
-int mandelbrot()
+int julia()
 {
 	t_mlx	data;
 
-	data = (t_mlx){.index = 0.003, .re = -0.75, .im = 0};
+	data = (t_mlx){.index = 1, .re = -0.70176, .im = -0.3842};
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, WIDTH, HIGH, "Mandelbrot");
 	data.image = mlx_new_image(data.mlx, WIDTH, HIGH);

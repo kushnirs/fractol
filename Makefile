@@ -6,13 +6,13 @@
 #    By: sergee <sergee@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/09 11:17:10 by skushnir          #+#    #+#              #
-#    Updated: 2018/01/16 16:34:03 by sergee           ###   ########.fr        #
+#    Updated: 2018/01/17 02:47:17 by sergee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
-SRC =  fractol.c
+SRC =  fractol.c utility.c mandelbrot.c julia.c
 
 HDR = fractol.h
 
