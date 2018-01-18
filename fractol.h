@@ -6,7 +6,7 @@
 /*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:14:12 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/18 21:20:22 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/18 21:50:20 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ typedef struct	s_point
 {
 	double	x;
 	double	y;
-	t_ui	color;
 }				t_point;
 
 typedef struct	s_mlx
