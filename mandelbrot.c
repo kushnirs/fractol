@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mandelbrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
+/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:22:37 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/17 02:34:16 by sergee           ###   ########.fr       */
+/*   Updated: 2018/01/18 14:27:07 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ static void		draw_fract(t_mlx *data)
 {
 	int		x;
 	int		y;
-	int i;
-	double a;
-	double b;
-	double lox;
+	int		i;
+	double	a;
+	double	b;
+	double	lox;
 
 	ft_bzero(data->data_adr, HIGH * data->sl);
 	x = -1;
@@ -45,6 +45,8 @@ static void		draw_fract(t_mlx *data)
 
 static int					mouse_action(int button, int x, int y, t_mlx *data)
 {
+	printf("do_re= %f\n", data->re);
+	printf("do_im= %f\n", data->im);
 	button == M_UP ? data->index -= data->index / 20 : 0;
 	button == M_UP ? data->re = formula(data->re, data->re +
 					(x - WIDTH / 2) * data->index, 0.05) : 0;

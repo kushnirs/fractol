@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
+/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:14:12 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/17 18:07:54 by sergee           ###   ########.fr       */
+/*   Updated: 2018/01/18 15:21:51 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,15 @@ typedef struct	s_mlx
 	double	index;
 	double	re;
 	double	im;
+	double	j_x;
+	double	j_y;
+	int		m_act;
 }				t_mlx;
 
 void				draw_line(t_mlx *data, double x[2], double y[2], int color);
 int					key_action(int key, t_mlx *data);
 int					close_window(t_mlx *data);
-unsigned int		parse_color(int c1, int c2, double t);
+unsigned int		parse_color(int c1, t_ui it);
 double				formula(double a, double b, double t);
 int 				mandelbrot();
 int					square();

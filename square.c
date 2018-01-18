@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   square.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
+/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 12:25:33 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/17 17:32:05 by sergee           ###   ########.fr       */
+/*   Updated: 2018/01/18 14:40:32 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,10 @@ static int	mouse_action(int button, int x, int y, t_mlx *data)
 	printf("re= %f\n", data->re);
 	printf("im= %f\n", data->im);
 	x = y;
-	button == M_UP  && data->re <= 30? data->re += 0.5 : 0;
+	button == M_UP  && data->re <= 29? data->re += 0.5 : 0;
 	button == M_UP && data->im >= 2? data->im -= 0.05 : 0;
-	button == M_DOWN && data->re >= 2 ? data->re -= 0.3 : 0;
+	button == M_DOWN && data->re <= 31 ? data->re -= 0.3 : 0;
+	button == M_DOWN && data->re >= 2 ? data->im += 0.03 : 0;
 	ft_bzero(data->data_adr, HIGH * data->sl);
 	draw_square(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->image, 0, 0);

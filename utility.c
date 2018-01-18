@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utility.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
+/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 21:58:17 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/18 04:59:13 by sergee           ###   ########.fr       */
+/*   Updated: 2018/01/18 14:47:02 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,16 @@ int					key_action(int key, t_mlx *data)
 	return (0);
 }
 
-unsigned int		parse_color(int c1, int c2, double t)
+unsigned int		parse_color(int c1, t_ui it)
 {
-	unsigned char dr;
-	unsigned char dg;
-	unsigned char db;
+	double			t;
+	unsigned char	dr;
+	unsigned char	dg;
+	unsigned char	db;
 
-	dr = (1 - t) * (double)(c1 / 0x10000 % 256) +
-		t * (double)(c2 / 0x10000 % 256);
-	dg = (1 - t) * (double)(c1 / 0x100 % 256) + t * (double)(c2 / 0x100 % 256);
-	db = (1 - t) * (double)(c1 % 256) + t * (double)(c2 % 256);
+	t = (double)c1 / (double)it;
+	dr = (1 - t) * (double)(c1 / 0x10000 % 256);
+	dg = (1 - t) * (double)(c1 / 0x100 % 256);
+	db = (1 - t) * (double)(c1 % 256);
 	return (dr * 0x10000 + dg * 0x100 + db);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   leaf.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
+/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 17:19:35 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/18 04:04:35 by sergee           ###   ########.fr       */
+/*   Updated: 2018/01/18 12:11:57 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ static void	draw_leaf(t_mlx *data, double coef[4][6])
 		xy[1] = coef[n_f][2] * temp[0] + coef[n_f][3] * temp[1] + coef[n_f][5];
 		temp[0] = xy[0];
 		temp[1] = xy[1];
-		xy[0] = (int)(xy[0] * (int)(WIDTH / 12) + WIDTH / 2);
-		xy[1] = (int)(xy[1] * (int)(HIGH / 9.92));
+		xy[0] = WIDTH - (int)(xy[0] * (int)(WIDTH / 12) + WIDTH / 2);
+		xy[1] = HIGH - (int)(xy[1] * (int)(HIGH / 9.92));
 		if (xy[0] >= 0 && xy[0] < WIDTH && xy[1] >= 0 && xy[1] < HIGH)
 			data->data_adr[(int)xy[0] + (int)xy[1] * WIDTH] = 3329330;
 	}
@@ -69,7 +69,8 @@ static void	draw_leaf(t_mlx *data, double coef[4][6])
 int	leaf()
 {
 	t_mlx		data;
-	double	coef[4][6] = {{0, 0, 0, 0.16, 0, 0},
+	double	coef[4][6] = {
+		{0, 0, 0, 0.16, 0, 0},
 		{0.85, 0.04, -0.04, 0.85, 0, 1.6},
 		{0.2, -0.24, 0.23, 0.22, 0, 1.3},
 		{-0.15, 0.28, 0.26, 0.24, 0, 0.44}};
