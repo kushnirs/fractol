@@ -6,7 +6,7 @@
 /*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:14:12 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/18 15:21:51 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/18 21:20:22 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,13 @@
 # define ESC	53
 # define PI		3.14159265358979323846
 
+typedef struct	s_point
+{
+	double	x;
+	double	y;
+	t_ui	color;
+}				t_point;
+
 typedef struct	s_mlx
 {
 	void	*mlx;
@@ -56,7 +63,7 @@ typedef struct	s_mlx
 	int		m_act;
 }				t_mlx;
 
-void				draw_line(t_mlx *data, double x[2], double y[2], int color);
+void				draw_line(t_mlx *data, t_point p0, t_point p1, int color);
 int					key_action(int key, t_mlx *data);
 int					close_window(t_mlx *data);
 unsigned int		parse_color(int c1, t_ui it);

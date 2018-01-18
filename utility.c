@@ -6,25 +6,25 @@
 /*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 21:58:17 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/18 14:47:02 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/18 21:23:53 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	draw_line(t_mlx *data, double x[2], double y[2], int color)
+void	draw_line(t_mlx *data, t_point p0, t_point p1, int color)
 {
 	double		t;
 	double		k;
 	double		xy[2];
 
-	k = 1.0 / sqrt((pow((x[1] - x[0]), 2) + pow((y[1] - y[0]), 2)));
+	k = 1.0 / sqrt((p1.x - p0.x) * (p1.x - p0.x) +\
+		(p1.y - p0.y) * (p1.y - p0.y));
 	t = 0;
 	while (t <= 1)
 	{
-
-		xy[0] = x[0] + t * (x[1] - x[0]);
-		xy[1] = y[0] + t * (y[1] - y[0]);
+		xy[0] = p0.x + t * (p1.x - p0.x);
+		xy[1] = p0.y + t * (p1.y - p0.y);
 		if (xy[0] >= 0 && xy[0] < WIDTH && xy[1] >= 0 && xy[1] < HIGH)
 			data->data_adr[(int)xy[0] + (int)xy[1] * WIDTH] = color;
 		t += k;

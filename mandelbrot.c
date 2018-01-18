@@ -6,13 +6,13 @@
 /*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:22:37 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/18 14:27:07 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/18 20:35:12 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static void		draw_fract(t_mlx *data)
+static void	draw_fract(t_mlx *data)
 {
 	int		x;
 	int		y;
@@ -43,10 +43,8 @@ static void		draw_fract(t_mlx *data)
 	mlx_put_image_to_window(data->mlx, data->win, data->image, 0, 0);
 }
 
-static int					mouse_action(int button, int x, int y, t_mlx *data)
+static int	mouse_action(int button, int x, int y, t_mlx *data)
 {
-	printf("do_re= %f\n", data->re);
-	printf("do_im= %f\n", data->im);
 	button == M_UP ? data->index -= data->index / 20 : 0;
 	button == M_UP ? data->re = formula(data->re, data->re +
 					(x - WIDTH / 2) * data->index, 0.05) : 0;
@@ -57,7 +55,7 @@ static int					mouse_action(int button, int x, int y, t_mlx *data)
 	return (0);
 }
 
-int mandelbrot()
+int			mandelbrot(void)
 {
 	t_mlx	data;
 
@@ -66,7 +64,7 @@ int mandelbrot()
 	data.win = mlx_new_window(data.mlx, WIDTH, HIGH, "Mandelbrot");
 	data.image = mlx_new_image(data.mlx, WIDTH, HIGH);
 	data.data_adr =
-		(t_ui *)mlx_get_data_addr(data.image, &data.bpp, &data.sl, &data.endian);
+	(t_ui *)mlx_get_data_addr(data.image, &data.bpp, &data.sl, &data.endian);
 	draw_fract(&data);
 	mlx_mouse_hook(data.win, &mouse_action, &data);
 	mlx_key_hook(data.win, &key_action, &data);

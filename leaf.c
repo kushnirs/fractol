@@ -6,27 +6,19 @@
 /*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 17:19:35 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/18 12:11:57 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/18 19:32:36 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static double fRand(double fMin, double fMax)
+static int	num_func(int n_f)
 {
-    double f;
-
-    f = (double)rand() / RAND_MAX;
-    return (fMin + f * (fMax - fMin));
-}
-
-static int num_func(int n_f)
-{
-	int i;
+	int		i;
 	double	r;
 	double	prob[4] = {0.01, 0.85, 0.07, 0.07};
 
-	r = fRand(0.0, 1.0);
+	r = (double)rand() / RAND_MAX;
 	i = -1;
 	while (++i <= 3)
 	{
@@ -34,7 +26,7 @@ static int num_func(int n_f)
 		if (r <= 0)
 		{
 			n_f = i;
-			break;
+			break ;
 		}
 	}
 	return (n_f);
@@ -66,9 +58,9 @@ static void	draw_leaf(t_mlx *data, double coef[4][6])
 	mlx_put_image_to_window(data->mlx, data->win, data->image, 0, 0);
 }
 
-int	leaf()
+int			leaf(void)
 {
-	t_mlx		data;
+	t_mlx	data;
 	double	coef[4][6] = {
 		{0, 0, 0, 0.16, 0, 0},
 		{0.85, 0.04, -0.04, 0.85, 0, 1.6},
@@ -80,10 +72,8 @@ int	leaf()
 	data.win = mlx_new_window(data.mlx, WIDTH, HIGH, "Leaf");
 	data.image = mlx_new_image(data.mlx, WIDTH, HIGH);
 	data.data_adr =
-		(t_ui *)mlx_get_data_addr(data.image, &data.bpp, &data.sl, &data.endian);
+	(t_ui *)mlx_get_data_addr(data.image, &data.bpp, &data.sl, &data.endian);
 	draw_leaf(&data, coef);
-	// mlx_mouse_hook(data.win, &mouse_action, &data);
-	mlx_key_hook(data.win, &key_action, &data);
 	mlx_hook(data.win, 17, 0, &close_window, &data);
 	mlx_loop(data.mlx);
 	return (0);
