@@ -6,7 +6,7 @@
 /*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 12:25:33 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/17 13:46:32 by sergee           ###   ########.fr       */
+/*   Updated: 2018/01/17 17:32:05 by sergee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int			square()
 	data.image = mlx_new_image(data.mlx, WIDTH, HIGH);
 	data.data_adr =
 		(t_ui *)mlx_get_data_addr(data.image, &data.bpp, &data.sl, &data.endian);
-		draw_square(&data);
+	draw_square(&data);
 	mlx_put_image_to_window(data.mlx, data.win, data.image, 0, 0);
 	mlx_mouse_hook(data.win, &mouse_action, &data);
 	mlx_key_hook(data.win, &key_action, &data);

@@ -6,7 +6,7 @@
 /*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:14:12 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/17 13:12:00 by sergee           ###   ########.fr       */
+/*   Updated: 2018/01/17 18:07:54 by sergee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,5 @@ int 				mandelbrot();
 int					square();
 int					julia();
 int					tree();
+int					leaf();
 #endif
