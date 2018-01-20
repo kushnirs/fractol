@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   leaf.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 17:19:35 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/18 19:32:36 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/20 18:43:55 by sergee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ static void	draw_leaf(t_mlx *data, double coef[4][6])
 	double	temp[2];
 	double	xy[2];
 
-	temp[0] = WIDTH / 2;
-	temp[1] = HIGH;
+	temp[0] = data->width / 2;
+	temp[1] = data->high;
 	n_f = 0;
 	i[0] = -1;
 	while (++i[0] < 400000)
@@ -50,10 +50,12 @@ static void	draw_leaf(t_mlx *data, double coef[4][6])
 		xy[1] = coef[n_f][2] * temp[0] + coef[n_f][3] * temp[1] + coef[n_f][5];
 		temp[0] = xy[0];
 		temp[1] = xy[1];
-		xy[0] = WIDTH - (int)(xy[0] * (int)(WIDTH / 12) + WIDTH / 2);
-		xy[1] = HIGH - (int)(xy[1] * (int)(HIGH / 9.92));
-		if (xy[0] >= 0 && xy[0] < WIDTH && xy[1] >= 0 && xy[1] < HIGH)
-			data->data_adr[(int)xy[0] + (int)xy[1] * WIDTH] = 3329330;
+		xy[0] = data->width - (int)(xy[0] * (int)(data->width / 12) +
+				data->width / 2);
+		xy[1] = data->high - (int)(xy[1] * (int)(data->high / 9.92));
+		if (xy[0] >= 0 && xy[0] < data->width &&
+			xy[1] >= 0 && xy[1] < data->high)
+			data->data_adr[(int)xy[0] + (int)xy[1] * data->width] = 3329330;
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->image, 0, 0);
 }
@@ -67,10 +69,10 @@ int			leaf(void)
 		{0.2, -0.24, 0.23, 0.22, 0, 1.3},
 		{-0.15, 0.28, 0.26, 0.24, 0, 0.44}};
 
-	data = (t_mlx){.index = 1, .re = 20, .im = 3};
+	data = (t_mlx){.width = WIDTH, .high = HIGH, .index = 1, .re = 20, .im = 3};
 	data.mlx = mlx_init();
-	data.win = mlx_new_window(data.mlx, WIDTH, HIGH, "Leaf");
-	data.image = mlx_new_image(data.mlx, WIDTH, HIGH);
+	data.win = mlx_new_window(data.mlx, data.width, data.high, "Leaf");
+	data.image = mlx_new_image(data.mlx, data.width, data.high);
 	data.data_adr =
 	(t_ui *)mlx_get_data_addr(data.image, &data.bpp, &data.sl, &data.endian);
 	draw_leaf(&data, coef);

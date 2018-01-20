@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mandelbrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:22:37 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/18 20:35:12 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/20 18:43:02 by sergee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,28 @@
 
 static void	draw_fract(t_mlx *data)
 {
-	int		x;
-	int		y;
+	int		xy[2];
 	int		i;
-	double	a;
+	double	a[2];
 	double	b;
-	double	lox;
 
-	ft_bzero(data->data_adr, HIGH * data->sl);
-	x = -1;
-	while (++x < WIDTH)
+	xy[0] = -1;
+	while (++xy[0] < data->width)
 	{
-		y = -1;
-		while (++y < HIGH)
+		xy[1] = -1;
+		while (++xy[1] < data->high)
 		{
 			i = -1;
-			a = 0;
+			a[0] = 0;
 			b = 0;
-			while ((a * a + b * b) < 4 && ++i < 256)
+			while ((a[0] * a[0] + b * b) < 4 && ++i < 256)
 			{
-				lox = a * a - b * b + data->re + (x - WIDTH / 2) * data->index;
-				b = 2 * a * b + data->im + (y - HIGH / 2) * data->index;
-				a = lox;
+				a[1] = a[0] * a[0] - b * b + data->re +
+					(xy[0] - data->width / 2) * data->index;
+				b = 2 * a[0] * b + data->im + (xy[1] - HIGH / 2) * data->index;
+				a[0] = a[1];
 			}
-			data->data_adr[y * WIDTH + x] = i * 25 % 256;
+			data->data_adr[xy[1] * data->width + xy[0]] = parse_color(i, 256);
 		}
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->image, 0, 0);
@@ -47,10 +45,11 @@ static int	mouse_action(int button, int x, int y, t_mlx *data)
 {
 	button == M_UP ? data->index -= data->index / 20 : 0;
 	button == M_UP ? data->re = formula(data->re, data->re +
-					(x - WIDTH / 2) * data->index, 0.05) : 0;
+					(x - data->width / 2) * data->index, 0.05) : 0;
 	button == M_UP ? data->im = formula(data->im, data->im +
-					(y - HIGH / 2) * data->index, 0.05) : 0;
+					(y - data->high / 2) * data->index, 0.05) : 0;
 	button == M_DOWN ? data->index += data->index / 20 : 0;
+	ft_bzero(data->data_adr, data->high * data->sl);
 	draw_fract(data);
 	return (0);
 }
@@ -59,10 +58,11 @@ int			mandelbrot(void)
 {
 	t_mlx	data;
 
-	data = (t_mlx){.index = 0.003, .re = -0.75, .im = 0};
+	data = (t_mlx){.width = WIDTH, .high = HIGH,
+		.index = 0.003, .re = -0.75, .im = 0};
 	data.mlx = mlx_init();
-	data.win = mlx_new_window(data.mlx, WIDTH, HIGH, "Mandelbrot");
-	data.image = mlx_new_image(data.mlx, WIDTH, HIGH);
+	data.win = mlx_new_window(data.mlx, data.width, data.high, "Mandelbrot");
+	data.image = mlx_new_image(data.mlx, data.width, data.high);
 	data.data_adr =
 	(t_ui *)mlx_get_data_addr(data.image, &data.bpp, &data.sl, &data.endian);
 	draw_fract(&data);

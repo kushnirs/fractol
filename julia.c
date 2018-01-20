@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 02:33:31 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/18 20:37:08 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/20 18:39:17 by sergee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,31 +23,28 @@ static int		ft_off(int button, int x, int y, t_mlx *data)
 
 static void		draw_fract(t_mlx *data)
 {
-	int		x;
-	int		y;
-	int		i;
-	double	a;
+	int		xy[3];
+	double	a[2];
 	double	b;
-	double	lox;
 
-	ft_bzero(data->data_adr, HIGH * data->sl);
-	x = -1;
-	while (++x < WIDTH)
+	xy[0] = -1;
+	while (++xy[0] < data->width)
 	{
-		y = -1;
-		while (++y < HIGH)
+		xy[1] = -1;
+		while (++xy[1] < data->high)
 		{
-			i = -1;
-			a = 1.5 * (x - WIDTH / 2) /
-			(0.5 * data->index * WIDTH ) + data->j_x;
-			b = (y - HIGH / 2) / (0.5 * data->index * HIGH) + data->j_y;
-			while ((a * a + b * b) < 4 && ++i < 128)
+			a[0] = 1.5 * (xy[0] - data->width / 2) /
+				(0.5 * data->index * data->width ) + data->j_x;
+			b = (xy[1] - data->high / 2) /
+				(0.5 * data->index * data->high) + data->j_y;
+			xy[2] = -1;
+			while ((a[0] * a[0] + b * b) < 4 && ++xy[2] < 257)
 			{
-				lox = a * a - b * b + data->re;
-				b = 2 * a * b + data->im;
-				a = lox;
+				a[1] = a[0] * a[0] - b * b + data->re;
+				b = 2 * a[0] * b + data->im;
+				a[0] = a[1];
 			}
-			data->data_adr[y * WIDTH + x] = (i * 9) % 255;
+			data->data_adr[xy[1] * WIDTH + xy[0]] = parse_color(xy[2], 128);
 		}
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->image, 0, 0);
@@ -56,10 +53,11 @@ static void		draw_fract(t_mlx *data)
 static int		mouse_move(int x, int y, t_mlx *data)
 {
 	y = x;
-	data->m_act ? data->im = 1.5 * (x - WIDTH / 2) /
-		(0.5 * data->index * WIDTH ) + data->j_x : 0;
-	data->m_act ? data->re = (y - HIGH / 2) /
-		(0.5 * data->index * HIGH) + data->j_y : 0;
+	data->m_act ? data->im = 1.5 * (x - data->width / 2) /
+		(0.5 * data->index * data->width ) + data->j_x : 0;
+	data->m_act ? data->re = (y - data->high / 2) /
+		(0.5 * data->index * data->high) + data->j_y : 0;
+	data->m_act ? ft_bzero(data->data_adr, data->high * data->sl) : 0;
 	data->m_act ? draw_fract(data) : 0;
 	return (0);
 }
@@ -69,9 +67,9 @@ static int		mouse_action(int button, int x, int y, t_mlx *data)
 	button == M_L ? data->m_act++ : 0;
 	button == M_UP ? data->index += data->index / 20 : 0;
 	button == M_UP ? data->j_x = formula(data->j_x, data->j_x +
-		1.5 * (x - WIDTH / 2) / (0.5 * data->index * WIDTH), 0.06) : 0;
+		1.5 * (x - data->width / 2) / (0.5 * data->index * data->width), 0.06) : 0;
 	button == M_UP ? data->j_y = formula(data->j_y, data->j_y +
-		(y - HIGH / 2) / (0.5 * data->index * HIGH), 0.06) : 0;
+		(y - data->high / 2) / (0.5 * data->index * data->high), 0.06) : 0;
 	button == M_DOWN ? data->index -= data->index / 20 : 0;
 	draw_fract(data);
 	return (0);
@@ -81,11 +79,11 @@ int 			julia(void)
 {
 	t_mlx	data;
 
-	data = (t_mlx){.index = 1, .re = -0.70176, .im = -0.3842, .j_x = 0,
-		.j_y = 0, .m_act = 0};
+	data = (t_mlx){.width = WIDTH, .high = HIGH, .index = 1, .re = -0.70176,
+		.im = -0.3842, .j_x = 0,	.j_y = 0, .m_act = 0};
 	data.mlx = mlx_init();
-	data.win = mlx_new_window(data.mlx, WIDTH, HIGH, "Julia");
-	data.image = mlx_new_image(data.mlx, WIDTH, HIGH);
+	data.win = mlx_new_window(data.mlx, data.width, data.high, "Julia");
+	data.image = mlx_new_image(data.mlx, data.width, data.high);
 	data.data_adr =
 	(t_ui *)mlx_get_data_addr(data.image, &data.bpp, &data.sl, &data.endian);
 	draw_fract(&data);

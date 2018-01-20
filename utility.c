@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utility.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 21:58:17 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/18 21:23:53 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/20 18:52:43 by sergee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@ void	draw_line(t_mlx *data, t_point p0, t_point p1, int color)
 	{
 		xy[0] = p0.x + t * (p1.x - p0.x);
 		xy[1] = p0.y + t * (p1.y - p0.y);
-		if (xy[0] >= 0 && xy[0] < WIDTH && xy[1] >= 0 && xy[1] < HIGH)
-			data->data_adr[(int)xy[0] + (int)xy[1] * WIDTH] = color;
+		if (xy[0] >= 0 && xy[0] < data->width &&
+			xy[1] >= 0 && xy[1] < data->high)
+			data->data_adr[(int)xy[0] + (int)xy[1] * data->width] = color;
 		t += k;
 	}
 }
@@ -36,33 +37,19 @@ double		formula(double a, double b, double t)
 	return ((1 - t) * a + b * t);
 }
 
-int					close_window(t_mlx *data)
+int			close_window(t_mlx *data)
 {
-	data = NULL;
-	exit(0);
+	mlx_destroy_window(data->mlx, data->win);
 	return (0);
 }
 
-int					key_action(int key, t_mlx *data)
+int			key_action(int key, t_mlx *data)
 {
-	data = 0;
-	key == ESC ? exit(0) : 0;
-	// key == UP ? data->move_y += 50 : 0;
-	// key == DOWN ? data->move_y += -50 : 0;
-	// key == RIGHT ? data->move_x += -50 : 0;
-	// key == LEFT ? data->move_x += 50 : 0;
-	// key == B_A ? data->rot.ry -= 5 : 0;
-	// key == B_W ? data->rot.rx -= 5 : 0;
-	// key == B_Q ? data->rot.rz -= 5 : 0;
-	// key == B_D ? data->rot.ry += 5 : 0;
-	// key == B_S ? data->rot.rx += 5 : 0;
-	// key == B_E ? data->rot.rz += 5 : 0;
-	// key == B_PLUS ? data->size += data->size / 10 : 0;
-	// key == B_MIN ? data->size -= data->size / 10 : 0;
+	key == ESC ? mlx_destroy_window(data->mlx, data->win) : 0;
 	return (0);
 }
 
-unsigned int		parse_color(int c1, t_ui it)
+t_ui		parse_color(int c1, t_ui it)
 {
 	double			t;
 	unsigned char	dr;
@@ -70,8 +57,8 @@ unsigned int		parse_color(int c1, t_ui it)
 	unsigned char	db;
 
 	t = (double)c1 / (double)it;
-	dr = (1 - t) * (double)(c1 / 0x10000 % 256);
-	dg = (1 - t) * (double)(c1 / 0x100 % 256);
-	db = (1 - t) * (double)(c1 % 256);
+	dr = 9 * (1 - t) * t * t * t * 255;
+	dg = 15 * (1 - t) * (1 - t) * t * t * 255;
+	db = 8.5 * (1 - t) * (1 - t) * (1 - t) * t * 255;
 	return (dr * 0x10000 + dg * 0x100 + db);
 }

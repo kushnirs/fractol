@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:14:12 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/18 21:50:20 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/20 18:53:21 by sergee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,16 +60,26 @@ typedef struct	s_mlx
 	double	j_x;
 	double	j_y;
 	int		m_act;
+	int		width;
+	int		high;
 }				t_mlx;
 
+
+double				formula(double a, double b, double t);
 void				draw_line(t_mlx *data, t_point p0, t_point p1, int color);
+void				draw_button(t_mlx *data ,t_point start, int s[2]);
+void				draw_menu(t_mlx *data);
+t_ui				parse_color(int c1, t_ui it);
+int					preview(int x, int y, t_mlx *data);
+int					mouse_menu(int button, int x, int y, t_mlx *data);
 int					key_action(int key, t_mlx *data);
 int					close_window(t_mlx *data);
-unsigned int		parse_color(int c1, t_ui it);
-double				formula(double a, double b, double t);
-int 				mandelbrot();
-int					square();
-int					julia();
-int					tree();
-int					leaf();
+int 				mandelbrot(void);
+int					square(void);
+int					julia(void);
+int					tree(void);
+int					triangle(void);
+int					triangle2(void);
+int					apollon(void);
+int					leaf(void);
 #endif
