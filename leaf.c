@@ -6,7 +6,7 @@
 /*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 17:19:35 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/22 13:55:23 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/22 14:10:16 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int			leaf(void)
 	data.data_adr =
 	(t_ui *)mlx_get_data_addr(data.image, &data.bpp, &data.sl, &data.endian);
 	draw_leaf(&data, coef);
+	mlx_key_hook(data.win, &key_action, &data);
 	mlx_hook(data.win, 17, 0, &close_window, &data);
 	mlx_loop(data.mlx);
 	return (0);

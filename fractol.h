@@ -6,7 +6,7 @@
 /*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:14:12 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/22 12:08:44 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/22 15:28:09 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,18 @@
 # include "minilibx/mlx.h"
 # include "libft/printf/ft_printf.h"
 
-# define HIGH	900
-# define WIDTH	1200
+# define HIGH	1300
+# define WIDTH	2000
 # define B_A	0
 # define B_W	13
 # define B_D	2
 # define B_S	1
 # define B_Q	12
-# define B_E    14
-# define B_PLUS 69
-# define B_MIN  78
-# define M_UP   5
-# define M_DOWN 4
+# define B_E	14
+# define B_PLUS	69
+# define B_MIN	78
+# define M_UP	5
+# define M_DOWN	4
 # define M_L	1
 # define M_R	2
 # define UP		126
@@ -41,45 +41,45 @@
 
 typedef struct	s_point
 {
-	double	x;
-	double	y;
+	double		x;
+	double		y;
 }				t_point;
 
 typedef struct	s_mlx
 {
-	void	*mlx;
-	void	*win;
-	void	*image;
-	t_ui	*data_adr;
-	int		bpp;
-	int		sl;
-	int		endian;
-	double	index;
-	double	re;
-	double	im;
-	double	j_x;
-	double	j_y;
-	int		m_act;
-	int		width;
-	int		high;
+	void		*mlx;
+	void		*win;
+	void		*image;
+	t_ui		*data_adr;
+	int			bpp;
+	int			sl;
+	int			endian;
+	double		index;
+	double		re;
+	double		im;
+	double		j_x;
+	double		j_y;
+	int			m_act;
+	int			width;
+	int			high;
 }				t_mlx;
 
+double			formula(double a, double b, double t);
+void			draw_line(t_mlx *data, t_point p0, t_point p1, int color);
+void			draw_button(t_mlx *data, t_point start, int s[2]);
+void			draw_menu(t_mlx *data);
+t_ui			parse_color(int c1, t_ui it);
+int				preview(int x, int y, t_mlx *data);
+int				mouse_menu(int button, int x, int y, t_mlx *data);
+int				key_action(int key, t_mlx *data);
+int				close_window(t_mlx *data);
+int				mandelbrot(void);
+int				square(void);
+int				julia(void);
+int				tree(void);
+int				triangle(void);
+int				triangle2(void);
+int				star(void);
+int				leaf(void);
 
-double				formula(double a, double b, double t);
-void				draw_line(t_mlx *data, t_point p0, t_point p1, int color);
-void				draw_button(t_mlx *data ,t_point start, int s[2]);
-void				draw_menu(t_mlx *data);
-t_ui				parse_color(int c1, t_ui it);
-int					preview(int x, int y, t_mlx *data);
-int					mouse_menu(int button, int x, int y, t_mlx *data);
-int					key_action(int key, t_mlx *data);
-int					close_window(t_mlx *data);
-int 				mandelbrot(void);
-int					square(void);
-int					julia(void);
-int					tree(void);
-int					triangle(void);
-int					triangle2(void);
-int					star(void);
-int					leaf(void);
 #endif
