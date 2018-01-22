@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
+/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:14:12 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/20 18:53:21 by sergee           ###   ########.fr       */
+/*   Updated: 2018/01/22 12:08:44 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,6 @@ int					julia(void);
 int					tree(void);
 int					triangle(void);
 int					triangle2(void);
-int					apollon(void);
+int					star(void);
 int					leaf(void);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   manage_menu.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
+/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 18:47:48 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/20 18:53:01 by sergee           ###   ########.fr       */
+/*   Updated: 2018/01/22 12:24:34 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void		draw_menu(t_mlx *data)
 	mlx_string_put(data->mlx, data->win, 40, 435, 0, "Pythagoras Tree");
 	mlx_string_put(data->mlx, data->win, 20, 490, 0, "Sierpinski triangle");
 	mlx_string_put(data->mlx, data->win, 15, 545, 0, "Centroid of Triangle");
-	mlx_string_put(data->mlx, data->win, 40, 600, 0, "Apollonian gasket");
+	mlx_string_put(data->mlx, data->win, 65, 600, 0, "Durer Star");
 	mlx_put_image_to_window(data->mlx, data->win,
 		mlx_xpm_file_to_image(data->mlx, "img/logo3.xpm", &w, &h), 0, 0);
 }
@@ -55,8 +55,8 @@ static void	preview_(int x, int y, t_mlx *data)
 		"img/triangle2.xpm", &w, &h), 250, 200) : 0;
 	x >= 15 && x <= 215 && y >= 585 && y <= 635 ?
 	mlx_put_image_to_window(data->mlx, data->win,
-	mlx_xpm_file_to_image(data->mlx, "img/mandel.xpm", &w, &h), 250, 200) : 0;
-	((x >=15 || x <= 215) && (y < 200 || y > 635))  || (x < 15 || x > 215) ?
+	mlx_xpm_file_to_image(data->mlx, "img/star.xpm", &w, &h), 250, 200) : 0;
+	((x >= 15 || x <= 215) && (y < 200 || y > 635)) || (x < 15 || x > 215) ?
 	mlx_put_image_to_window(data->mlx, data->win,
 	mlx_xpm_file_to_image(data->mlx, "img/lox.xpm", &w, &h), 250, 200) : 0;
 }
@@ -85,7 +85,7 @@ int			preview(int x, int y, t_mlx *data)
 	return (0);
 }
 
-void		draw_button(t_mlx *data ,t_point start, int s[2])
+void		draw_button(t_mlx *data, t_point start, int s[2])
 {
 	t_point	tmp[3];
 
@@ -111,7 +111,7 @@ int			mouse_menu(int button, int x, int y, t_mlx *data)
 		x >= 15 && x <= 215 && y >= 420 && y <= 470 ? tree() : 0;
 		x >= 15 && x <= 215 && y >= 475 && y <= 525 ? triangle() : 0;
 		x >= 15 && x <= 215 && y >= 530 && y <= 580 ? triangle2() : 0;
-		x >= 15 && x <= 215 && y >= 585 && y <= 635 ? apollon() : 0;
+		x >= 15 && x <= 215 && y >= 585 && y <= 635 ? star() : 0;
 	}
 	return (0);
 }

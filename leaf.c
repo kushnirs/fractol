@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   leaf.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
+/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 17:19:35 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/20 18:43:55 by sergee           ###   ########.fr       */
+/*   Updated: 2018/01/22 13:55:23 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 static int	num_func(int n_f)
 {
-	int		i;
-	double	r;
-	double	prob[4] = {0.01, 0.85, 0.07, 0.07};
+	int				i;
+	double			r;
+	const double	prob[4] = {0.01, 0.85, 0.07, 0.07};
 
 	r = (double)rand() / RAND_MAX;
 	i = -1;
@@ -32,7 +32,7 @@ static int	num_func(int n_f)
 	return (n_f);
 }
 
-static void	draw_leaf(t_mlx *data, double coef[4][6])
+static void	draw_leaf(t_mlx *data, const double coef[4][6])
 {
 	int		i[2];
 	int		n_f;
@@ -62,8 +62,8 @@ static void	draw_leaf(t_mlx *data, double coef[4][6])
 
 int			leaf(void)
 {
-	t_mlx	data;
-	double	coef[4][6] = {
+	t_mlx			data;
+	const double	coef[4][6] = {
 		{0, 0, 0, 0.16, 0, 0},
 		{0.85, 0.04, -0.04, 0.85, 0, 1.6},
 		{0.2, -0.24, 0.23, 0.22, 0, 1.3},

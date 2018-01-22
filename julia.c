@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
+/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 02:33:31 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/20 18:39:17 by sergee           ###   ########.fr       */
+/*   Updated: 2018/01/22 12:18:20 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void		draw_fract(t_mlx *data)
 		while (++xy[1] < data->high)
 		{
 			a[0] = 1.5 * (xy[0] - data->width / 2) /
-				(0.5 * data->index * data->width ) + data->j_x;
+				(0.5 * data->index * data->width) + data->j_x;
 			b = (xy[1] - data->high / 2) /
 				(0.5 * data->index * data->high) + data->j_y;
 			xy[2] = -1;
@@ -54,7 +54,7 @@ static int		mouse_move(int x, int y, t_mlx *data)
 {
 	y = x;
 	data->m_act ? data->im = 1.5 * (x - data->width / 2) /
-		(0.5 * data->index * data->width ) + data->j_x : 0;
+		(0.5 * data->index * data->width) + data->j_x : 0;
 	data->m_act ? data->re = (y - data->high / 2) /
 		(0.5 * data->index * data->high) + data->j_y : 0;
 	data->m_act ? ft_bzero(data->data_adr, data->high * data->sl) : 0;
@@ -67,7 +67,7 @@ static int		mouse_action(int button, int x, int y, t_mlx *data)
 	button == M_L ? data->m_act++ : 0;
 	button == M_UP ? data->index += data->index / 20 : 0;
 	button == M_UP ? data->j_x = formula(data->j_x, data->j_x +
-		1.5 * (x - data->width / 2) / (0.5 * data->index * data->width), 0.06) : 0;
+	1.5 * (x - data->width / 2) / (0.5 * data->index * data->width), 0.06) : 0;
 	button == M_UP ? data->j_y = formula(data->j_y, data->j_y +
 		(y - data->high / 2) / (0.5 * data->index * data->high), 0.06) : 0;
 	button == M_DOWN ? data->index -= data->index / 20 : 0;
@@ -75,12 +75,12 @@ static int		mouse_action(int button, int x, int y, t_mlx *data)
 	return (0);
 }
 
-int 			julia(void)
+int				julia(void)
 {
 	t_mlx	data;
 
 	data = (t_mlx){.width = WIDTH, .high = HIGH, .index = 1, .re = -0.70176,
-		.im = -0.3842, .j_x = 0,	.j_y = 0, .m_act = 0};
+		.im = -0.3842, .j_x = 0, .j_y = 0, .m_act = 0};
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, data.width, data.high, "Julia");
 	data.image = mlx_new_image(data.mlx, data.width, data.high);

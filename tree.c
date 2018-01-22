@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tree.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
+/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 09:48:05 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/20 18:44:59 by sergee           ###   ########.fr       */
+/*   Updated: 2018/01/22 12:18:41 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	draw_tree(t_mlx *data, t_point p0, t_point p1)
 		p1.x *= 0.73;
 		xy.x = (p0.x + p1.x * cos(p1.y));
 		xy.y = (p0.y - p1.x * sin(p1.y));
-		draw_line(data, p0, xy,	ft_hex_to_dec("0xff6347") * p1.x / 2);
+		draw_line(data, p0, xy, ft_hex_to_dec("0xff6347") * p1.x / 2);
 		draw_tree(data, xy, (t_point){p1.x, p1.y + data->re});
 		draw_tree(data, xy, (t_point){p1.x, p1.y - data->im});
 	}

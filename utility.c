@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utility.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
+/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 21:58:17 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/20 18:52:43 by sergee           ###   ########.fr       */
+/*   Updated: 2018/01/22 12:24:48 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,24 +32,24 @@ void	draw_line(t_mlx *data, t_point p0, t_point p1, int color)
 	}
 }
 
-double		formula(double a, double b, double t)
+double	formula(double a, double b, double t)
 {
 	return ((1 - t) * a + b * t);
 }
 
-int			close_window(t_mlx *data)
+int		close_window(t_mlx *data)
 {
 	mlx_destroy_window(data->mlx, data->win);
 	return (0);
 }
 
-int			key_action(int key, t_mlx *data)
+int		key_action(int key, t_mlx *data)
 {
 	key == ESC ? mlx_destroy_window(data->mlx, data->win) : 0;
 	return (0);
 }
 
-t_ui		parse_color(int c1, t_ui it)
+t_ui	parse_color(int c1, t_ui it)
 {
 	double			t;
 	unsigned char	dr;
