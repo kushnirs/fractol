@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:14:12 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/22 15:28:09 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/24 00:52:46 by sergee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdio.h>
 # include <math.h>
+# include "OpenCL/opencl.h"
 # include "minilibx/mlx.h"
 # include "libft/printf/ft_printf.h"
 
@@ -39,6 +40,19 @@
 # define ESC	53
 # define PI		3.14159265358979323846
 
+
+typedef	struct s_kernel
+{
+	cl_device_id device_id;
+	cl_context context;
+	cl_command_queue command_queue;
+	cl_mem memobj;
+	cl_program program;
+	cl_kernel kernel;
+	cl_platform_id platform_id;
+	cl_uint ret_num_devices;
+	cl_uint ret_num_platforms;
+}				t_kernel;
 typedef struct	s_point
 {
 	double		x;
@@ -62,6 +76,7 @@ typedef struct	s_mlx
 	int			m_act;
 	int			width;
 	int			high;
+	t_kernel	kernel;
 }				t_mlx;
 
 double			formula(double a, double b, double t);
@@ -79,7 +94,7 @@ int				julia(void);
 int				tree(void);
 int				triangle(void);
 int				triangle2(void);
-int				star(void);
+// int				star(void);
 int				leaf(void);
 
 #endif

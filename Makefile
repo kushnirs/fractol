@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+         #
+#    By: sergee <sergee@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/09 11:17:10 by skushnir          #+#    #+#              #
-#    Updated: 2018/01/22 12:08:12 by skushnir         ###   ########.fr        #
+#    Updated: 2018/01/23 23:49:30 by sergee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
-SRC =  fractol.c utility.c mandelbrot.c julia.c tree.c square.c leaf.c \
-	   triangle.c triangle2.c star.c manage_menu.c
+SRC =  fractol.c utility.c mandel.c julia.c tree.c square.c leaf.c \
+	   triangle.c triangle2.c manage_menu.c
 
 HDR = fractol.h
 
@@ -24,10 +24,10 @@ OBJ = $(SRC:.c=.o)
 all:lib $(NAME)
 
 $(NAME): $(OBJ) $(HDR) $(LIB)
-	gcc -Wall -Wextra -Werror -O3 -o $(NAME) $(OBJ) $(LIB) -framework OpenGl -framework AppKit
+	gcc -Wall -Wextra -Werror -O3 -o $(NAME) $(OBJ) $(LIB) -framework OpenGl -framework AppKit -framework opencl
 
 .c.o:
-	gcc  -Wall -Wextra -Werror  -O3 -c $<
+	gcc  -Wall -Wextra -Werror  -O3 -c $< 
 
 lib: 
 	make -C libft;
