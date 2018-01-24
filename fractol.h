@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
+/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:14:12 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/24 00:52:46 by sergee           ###   ########.fr       */
+/*   Updated: 2018/01/24 15:32:33 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,16 @@
 
 typedef	struct s_kernel
 {
-	cl_device_id device_id;
-	cl_context context;
-	cl_command_queue command_queue;
-	cl_mem memobj;
-	cl_program program;
-	cl_kernel kernel;
-	cl_platform_id platform_id;
-	cl_uint ret_num_devices;
-	cl_uint ret_num_platforms;
+	cl_device_id		device_id;
+	cl_context			context;
+	cl_command_queue	command_queue;
+	cl_mem				memobj;
+	cl_program			program;
+	cl_kernel			kernel;
+	cl_platform_id		platform_id;
+	cl_uint				ret_num_devices;
+	cl_uint				ret_num_platforms;
+	size_t				global_work_size;
 }				t_kernel;
 typedef struct	s_point
 {
@@ -94,7 +95,7 @@ int				julia(void);
 int				tree(void);
 int				triangle(void);
 int				triangle2(void);
-// int				star(void);
+int				star(void);
 int				leaf(void);
 
 #endif

@@ -1,5 +1,5 @@
 
-static unsigned int	parse_color_(int c1, unsigned int it)
+static int	parse_color_(int c1, unsigned int it)
 {
 	double			t;
 	unsigned char	dr;
@@ -15,27 +15,17 @@ static unsigned int	parse_color_(int c1, unsigned int it)
 
 __kernel void	draw_fract(__global int *buff, int width, int high, double re, double im, double index)
 {
-	int		xy[2];
-	int		i;
-	double	a[2];
-	double	b;
+	int		x = get_global_id(0);
+	int		y = get_global_id(1);
+	int		i = 0;
+	double	a[2] = {0, 0};
+	double	b = 0;
 
-	xy[0] = -1;
-	while (++xy[0] < width)
+	while ((a[0] * a[0] + b * b) < 4.0 && ++i < 128)
 	{
-		xy[1] = -1;
-		while (++xy[1] < high)
-		{
-			i = -1;
-			a[0] = 0;
-			b = 0;
-			while ((a[0] * a[0] + b * b) < 4 && ++i < 256)
-			{
-				a[1] = a[0] * a[0] - b * b + re + (xy[0] - width / 2) * index;
-				b = 2 * a[0] * b + im + (xy[1] - high / 2) * index;
-				a[0] = a[1];
-			}
-			buff[xy[1] * width + xy[0]] = parse_color_(i, 256);
-		}
+		a[1] = a[0] * a[0] - b * b + re + (x - width / 2) * index;
+		b = 2 * a[0] * b + im + (y - high / 2) * index;
+		a[0] = a[1];
 	}
+	buff[y * width + x] = parse_color_(i, 128);
 }
