@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 02:33:31 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/22 12:18:20 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/25 00:37:21 by sergee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,44 +21,14 @@ static int		ft_off(int button, int x, int y, t_mlx *data)
 	return (0);
 }
 
-static void		draw_fract(t_mlx *data)
-{
-	int		xy[3];
-	double	a[2];
-	double	b;
-
-	xy[0] = -1;
-	while (++xy[0] < data->width)
-	{
-		xy[1] = -1;
-		while (++xy[1] < data->high)
-		{
-			a[0] = 1.5 * (xy[0] - data->width / 2) /
-				(0.5 * data->index * data->width) + data->j_x;
-			b = (xy[1] - data->high / 2) /
-				(0.5 * data->index * data->high) + data->j_y;
-			xy[2] = -1;
-			while ((a[0] * a[0] + b * b) < 4 && ++xy[2] < 257)
-			{
-				a[1] = a[0] * a[0] - b * b + data->re;
-				b = 2 * a[0] * b + data->im;
-				a[0] = a[1];
-			}
-			data->data_adr[xy[1] * WIDTH + xy[0]] = parse_color(xy[2], 128);
-		}
-	}
-	mlx_put_image_to_window(data->mlx, data->win, data->image, 0, 0);
-}
-
 static int		mouse_move(int x, int y, t_mlx *data)
 {
 	y = x;
-	data->m_act ? data->im = 1.5 * (x - data->width / 2) /
-		(0.5 * data->index * data->width) + data->j_x : 0;
-	data->m_act ? data->re = (y - data->high / 2) /
+	data->m_act ? data->im = 1.5 * (y - data->high / 2) /
 		(0.5 * data->index * data->high) + data->j_y : 0;
-	data->m_act ? ft_bzero(data->data_adr, data->high * data->sl) : 0;
-	data->m_act ? draw_fract(data) : 0;
+	data->m_act ? data->re = (x - data->width / 2) /
+		(0.5 * data->index * data->width) + data->j_x : 0;
+	data->m_act ? kernel_param(data) : 0;
 	return (0);
 }
 
@@ -67,11 +37,11 @@ static int		mouse_action(int button, int x, int y, t_mlx *data)
 	button == M_L ? data->m_act++ : 0;
 	button == M_UP ? data->index += data->index / 20 : 0;
 	button == M_UP ? data->j_x = formula(data->j_x, data->j_x +
-	1.5 * (x - data->width / 2) / (0.5 * data->index * data->width), 0.06) : 0;
+	(x - data->width / 2) / (0.5 * data->index * data->width), 0.06) : 0;
 	button == M_UP ? data->j_y = formula(data->j_y, data->j_y +
-		(y - data->high / 2) / (0.5 * data->index * data->high), 0.06) : 0;
+		1.5 * (y - data->high / 2) / (0.5 * data->index * data->high), 0.06) : 0;
 	button == M_DOWN ? data->index -= data->index / 20 : 0;
-	draw_fract(data);
+	kernel_param(data);
 	return (0);
 }
 
@@ -86,7 +56,7 @@ int				julia(void)
 	data.image = mlx_new_image(data.mlx, data.width, data.high);
 	data.data_adr =
 	(t_ui *)mlx_get_data_addr(data.image, &data.bpp, &data.sl, &data.endian);
-	draw_fract(&data);
+	host_fract("./kernel/julia.cl", "draw_julia", &data);
 	mlx_mouse_hook(data.win, &mouse_action, &data);
 	mlx_key_hook(data.win, &key_action, &data);
 	mlx_hook(data.win, 5, 0, &ft_off, &data);

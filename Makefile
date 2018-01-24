@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+         #
+#    By: sergee <sergee@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/09 11:17:10 by skushnir          #+#    #+#              #
-#    Updated: 2018/01/24 15:24:50 by skushnir         ###   ########.fr        #
+#    Updated: 2018/01/24 23:04:50 by sergee           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
-SRC =  fractol.c utility.c mandel.c julia.c tree.c square.c leaf.c \
-	   triangle.c triangle2.c manage_menu.c star.c
+SRC =  fractol.c utility.c mandelbrot.c julia.c tree.c square.c leaf.c \
+	   triangle.c triangle2.c manage_menu.c star.c OpenCl.c
 
 HDR = fractol.h
 

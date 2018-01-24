@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:14:12 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/24 15:32:33 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/24 23:46:08 by sergee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "minilibx/mlx.h"
 # include "libft/printf/ft_printf.h"
 
+# define DEVICE_TYPE CL_DEVICE_TYPE_CPU
 # define HIGH	1300
 # define WIDTH	2000
 # define B_A	0
@@ -43,17 +44,18 @@
 
 typedef	struct s_kernel
 {
-	cl_device_id		device_id;
+	cl_device_id		dev_id;
 	cl_context			context;
-	cl_command_queue	command_queue;
+	cl_command_queue	com_queue;
 	cl_mem				memobj;
 	cl_program			program;
 	cl_kernel			kernel;
-	cl_platform_id		platform_id;
-	cl_uint				ret_num_devices;
-	cl_uint				ret_num_platforms;
-	size_t				global_work_size;
-}				t_kernel;
+	cl_platform_id		p_id;
+	cl_uint				ret_num_dev;
+	cl_uint				ret_num_p;
+	size_t				gl_w_s;
+}				t_host;
+
 typedef struct	s_point
 {
 	double		x;
@@ -77,10 +79,12 @@ typedef struct	s_mlx
 	int			m_act;
 	int			width;
 	int			high;
-	t_kernel	kernel;
+	t_host		host;
 }				t_mlx;
 
 double			formula(double a, double b, double t);
+void			kernel_param(t_mlx *data);
+int				host_fract(char *fileName, char *funcName, t_mlx *data);
 void			draw_line(t_mlx *data, t_point p0, t_point p1, int color);
 void			draw_button(t_mlx *data, t_point start, int s[2]);
 void			draw_menu(t_mlx *data);
