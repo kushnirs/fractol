@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   triangle.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/19 16:53:27 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/22 14:00:59 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/25 01:09:14 by sergee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ static int	draw_triangle(t_mlx *data, t_point p[3], int i)
 		2, .y = (p[1].y + p[2].y) / 2};
 	point[2] = (t_point){.x = (p[0].x + p[2].x) /
 		2, .y = (p[0].y + p[2].y) / 2};
-	draw_line(data, p[0], p[1], ft_hex_to_dec("0xffffff"));
-	draw_line(data, p[1], p[2], ft_hex_to_dec("0xffffff"));
-	draw_line(data, p[2], p[0], ft_hex_to_dec("0xffffff"));
+	draw_line(data, p[0], p[1], 0xffffff);
+	draw_line(data, p[1], p[2], 0xffffff);
+	draw_line(data, p[2], p[0], 0xffffff);
 	if (i--)
 	{
 		draw_triangle(data, (t_point[]){p[0], point[0], point[2]}, i);

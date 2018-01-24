@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   square.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 12:25:33 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/22 14:07:13 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/25 00:53:52 by sergee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ static void	draw_square(t_mlx *data)
 		xy[2].y = (int)(data->high / 2 + d[0] * sin(d[1] + 5 * M_PI / 4));
 		xy[3].x = (int)(data->width / 2 + d[0] * cos(d[1] + 7 * M_PI / 4));
 		xy[3].y = (int)(data->high / 2 + d[0] * sin(d[1] + 7 * M_PI / 4));
-		draw_line(data, xy[0], xy[1], parse_color(i + 10, 128));
-		draw_line(data, xy[1], xy[2], parse_color(i + 10, 128));
-		draw_line(data, xy[2], xy[3], parse_color(i + 10, 128));
-		draw_line(data, xy[3], xy[0], parse_color(i + 10, 128));
+		draw_line(data, xy[0], xy[1], parse_color_2(i + 10, 128));
+		draw_line(data, xy[1], xy[2], parse_color_2(i + 10, 128));
+		draw_line(data, xy[2], xy[3], parse_color_2(i + 10, 128));
+		draw_line(data, xy[3], xy[0], parse_color_2(i + 10, 128));
 		d[1] += M_PI / data->re;
 		d[0] *= sin(M_PI / data->im);
 	}

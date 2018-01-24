@@ -6,7 +6,7 @@
 /*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:14:12 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/24 23:46:08 by sergee           ###   ########.fr       */
+/*   Updated: 2018/01/25 00:54:36 by sergee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,8 @@ int				host_fract(char *fileName, char *funcName, t_mlx *data);
 void			draw_line(t_mlx *data, t_point p0, t_point p1, int color);
 void			draw_button(t_mlx *data, t_point start, int s[2]);
 void			draw_menu(t_mlx *data);
-t_ui			parse_color(int c1, t_ui it);
+t_ui			parse_color(int c1, int c2, double t);
+t_ui			parse_color_2(int c1, t_ui t);
 int				preview(int x, int y, t_mlx *data);
 int				mouse_menu(int button, int x, int y, t_mlx *data);
 int				key_action(int key, t_mlx *data);

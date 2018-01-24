@@ -29,13 +29,13 @@ __kernel void	draw_julia(__global int *data, int width,int high,
 {
 	int		x = get_global_id(0);
 	int		y = get_global_id(1);
-	int		i = 0;
+	int		i = 128;
 	double	a[2];
 	double	b;
 
 	a[0] = 1.5 * (x - width / 2) / (0.5 * index * width) + j_x;
 	b = (y - high / 2) / (0.5 * index * high) + j_y;
-	while ((a[0] * a[0] + b * b) < 4 && ++i < 128)
+	while ((a[0] * a[0] + b * b) < 4 && i-- > 1)
 	{
 		a[1] = a[0] * a[0] - b * b + re;
 		b = 2 * a[0] * b + im;

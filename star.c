@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   star.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 01:03:53 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/22 13:09:13 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/25 01:08:51 by sergee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	draw_pentagon(t_point p1, double r2, double ang3, t_mlx *data)
 		xy[0].y = p1.y + r2 * sin(ang3 + j * (M_PI / 5) * 2);
 		xy[1].x = p1.x + r2 * cos(ang3 + (j + 1) * M_PI / 5 * 2);
 		xy[1].y = p1.y + r2 * sin(ang3 + (j + 1) * M_PI / 5 * 2);
-		draw_line(data, xy[0], xy[1], ft_hex_to_dec("0xffffff") - 50000 * j);
+		draw_line(data, xy[0], xy[1], 0xffffff - 50000 * j);
 	}
 }
 
