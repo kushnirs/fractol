@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   fractol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:13:11 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/25 14:04:06 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/25 20:28:01 by sergee           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-#define SIZE 64
 
 void	draw_line(t_mlx *data, t_point p0, t_point p1, int color)
 {
