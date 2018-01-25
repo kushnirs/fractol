@@ -6,7 +6,7 @@
 /*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/23 10:14:49 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/25 10:26:57 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/25 10:44:10 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ static void	host_program(char *funcname, char *str, int size, t_mlx *data)
 {
 	cl_int	ret;
 
+	data->host.com_queue = clCreateCommandQueue(data->host.context,
+		data->host.dev_id, 0, &ret);
+	ret ? exit(ft_printf("clCreateCommandQueue Failed\n")) : 0;
 	data->host.memobj = clCreateBuffer(data->host.context, CL_MEM_READ_WRITE,
 		data->width * data->high * sizeof(int), NULL, &ret);
 	ret ? exit(ft_printf("clCreateBuffer Failed\n")) : 0;
@@ -83,10 +86,8 @@ int			host_fract(char *filename, char *funcname, t_mlx *data)
 	data->host.context = clCreateContext(NULL, 1,
 		&data->host.dev_id, NULL, NULL, &ret);
 	ret ? exit(ft_printf("clCreateContext Failed\n")) : 0;
-	data->host.com_queue = clCreateCommandQueue(data->host.context,
-		data->host.dev_id, 0, &ret);
-	ret ? exit(ft_printf("clCreateCommandQueue Failed\n")) : 0;
 	host_program(funcname, str, size, data);
+	free(str);
 	return (0);
 }
 /*

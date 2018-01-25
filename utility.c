@@ -6,7 +6,7 @@
 /*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/05 21:58:17 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/25 10:11:01 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/25 12:05:51 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int		close_window(t_mlx *data)
 int		key_action(int key, t_mlx *data)
 {
 	key == ESC ? mlx_destroy_window(data->mlx, data->win) : 0;
+	key == B_Q && !data->m_act ? data->m_act++ : data->m_act--;
 	return (0);
 }
 

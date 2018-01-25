@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   star.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
+/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 01:03:53 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/25 01:08:51 by sergee           ###   ########.fr       */
+/*   Updated: 2018/01/25 12:14:50 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,32 @@ static int	draw_star(t_mlx *data, t_point p1, double r_a[], int i)
 	return (0);
 }
 
+static int		key_action_(int key, t_mlx *data)
+{
+	t_point	p;
+
+	if (key == ESC)
+	{
+		mlx_destroy_window(data->mlx, data->win);
+		return(0);
+	}
+	key == UP ? data->j_y += 50 : 0;
+	key == DOWN ? data->j_y -= 50 : 0;
+	key == RIGHT ? data->j_x -= 50 : 0;
+	key == LEFT ? data->j_x += 50 : 0;
+	p = (t_point){.x = data->width / 2 - data->j_x,
+		.y = data->high / 2 - data->j_y};
+	ft_bzero(data->data_adr, data->high * data->sl);
+	draw_star(data, p, (double[]){150, M_PI / 2}, data->index);
+	mlx_put_image_to_window(data->mlx, data->win, data->image, 0, 0);
+	return (0);
+}
+
 static int	mouse_action(int button, int x, int y, t_mlx *data)
 {
 	t_point	p;
 
-	p = (t_point){.x = data->width / 2, .y = data->high / 2};
+	p = (t_point){.x = data->width / 2 - data->j_x, .y = data->high / 2 - data->j_y};
 	x = y;
 	button == M_UP && data->index < 6 ? data->index++ : 0;
 	button == M_DOWN && data->index > 1 ? data->index-- : 0;
@@ -73,7 +94,7 @@ int			star(void)
 	t_point	p;
 
 	data = (t_mlx){.width = WIDTH, .high = HIGH,
-		.index = 1};
+		.index = 1, .j_x = 0, .j_y = 0};
 	p = (t_point){.x = data.width / 2, .y = data.high / 2};
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, data.width, data.high, "Durer Star");
@@ -83,7 +104,7 @@ int			star(void)
 	draw_star(&data, p, (double[]){150, M_PI / 2}, data.index);
 	mlx_put_image_to_window(data.mlx, data.win, data.image, 0, 0);
 	mlx_mouse_hook(data.win, &mouse_action, &data);
-	mlx_key_hook(data.win, &key_action, &data);
+	mlx_key_hook(data.win, &key_action_, &data);
 	mlx_hook(data.win, 17, 0, &close_window, &data);
 	mlx_loop(data.mlx);
 	return (0);
