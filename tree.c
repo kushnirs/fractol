@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   tree.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
+/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 09:48:05 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/25 01:24:44 by sergee           ###   ########.fr       */
+/*   Updated: 2018/01/25 10:21:44 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-static int		ft_off(int button, int x, int y, t_mlx *data)
+static int	ft_off(int button, int x, int y, t_mlx *data)
 {
 	(void)button;
 	(void)x;
@@ -43,14 +43,14 @@ static int	mouse_action(int button, int x, int y, t_mlx *data)
 {
 	x = y;
 	button == M_L ? data->m_act++ : 0;
-	data->m_act && button == M_UP && data->index < 0.73 ?
+	data->m_act && button == M_UP && data->index < 0.74 ?
 		data->index += 0.01 : 0;
 	data->m_act && button == M_DOWN && data->index > 0.5 ?
 		data->index -= 0.01 : 0;
-	button == M_UP && data->re >= 0.1 ? data->re -= 0.01 : 0;
-	button == M_UP && data->im <= 1 ? data->im += 0.01 : 0;
-	button == M_DOWN && data->re <= 1 ? data->re += 0.01 : 0;
-	button == M_DOWN && data->im >= 0.1 ? data->im -= 0.01 : 0;
+	!data->m_act && button == M_UP && data->re >= 0.1 ? data->re -= 0.01 : 0;
+	!data->m_act && button == M_UP && data->im <= 1 ? data->im += 0.01 : 0;
+	!data->m_act && button == M_DOWN && data->re <= 1 ? data->re += 0.01 : 0;
+	!data->m_act && button == M_DOWN && data->im >= 0.1 ? data->im -= 0.01 : 0;
 	ft_bzero(data->data_adr, data->high * data->sl);
 	draw_tree(data, (t_point){.x = data->width / 2, .y = data->high},
 					(t_point){.x = data->width * 0.25, .y = M_PI / 2});

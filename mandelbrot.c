@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mandelbrot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
+/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:22:37 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/24 23:16:23 by sergee           ###   ########.fr       */
+/*   Updated: 2018/01/25 10:10:11 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int	mouse_action(int button, int x, int y, t_mlx *data)
 	button == M_UP ? data->im = formula(data->im, data->im +
 					(y - data->high / 2) * data->index, 0.05) : 0;
 	button == M_DOWN ? data->index += data->index / 20 : 0;
-	kernel_param(data);	
+	kernel_param(data);
 	return (0);
 }
 

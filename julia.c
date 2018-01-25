@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   julia.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sergee <sergee@student.42.fr>              +#+  +:+       +#+        */
+/*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 02:33:31 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/25 00:37:21 by sergee           ###   ########.fr       */
+/*   Updated: 2018/01/25 10:10:01 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int		mouse_action(int button, int x, int y, t_mlx *data)
 	button == M_UP ? data->j_x = formula(data->j_x, data->j_x +
 	(x - data->width / 2) / (0.5 * data->index * data->width), 0.06) : 0;
 	button == M_UP ? data->j_y = formula(data->j_y, data->j_y +
-		1.5 * (y - data->high / 2) / (0.5 * data->index * data->high), 0.06) : 0;
+	1.5 * (y - data->high / 2) / (0.5 * data->index * data->high), 0.06) : 0;
 	button == M_DOWN ? data->index -= data->index / 20 : 0;
 	kernel_param(data);
 	return (0);

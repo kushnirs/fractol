@@ -6,7 +6,7 @@
 /*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 17:19:35 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/22 14:10:16 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/25 10:25:08 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	draw_leaf(t_mlx *data, const double coef[4][6])
 	temp[1] = data->high;
 	n_f = 0;
 	i[0] = -1;
-	while (++i[0] < 400000)
+	while (++i[0] < 500000)
 	{
 		n_f = num_func(n_f);
 		xy[0] = coef[n_f][0] * temp[0] + coef[n_f][1] * temp[1] + coef[n_f][4];
@@ -65,7 +65,7 @@ int			leaf(void)
 	t_mlx			data;
 	const double	coef[4][6] = {
 		{0, 0, 0, 0.16, 0, 0},
-		{0.85, 0.04, -0.04, 0.85, 0, 1.6},
+		{0.845, 0.04, -0.04, 0.845, 0, 1.6},
 		{0.2, -0.24, 0.23, 0.22, 0, 1.3},
 		{-0.15, 0.28, 0.26, 0.24, 0, 0.44}};
 
