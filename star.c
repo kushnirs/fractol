@@ -6,7 +6,7 @@
 /*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/20 01:03:53 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/25 12:14:50 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/25 12:16:12 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,14 @@ static int	draw_star(t_mlx *data, t_point p1, double r_a[], int i)
 	return (0);
 }
 
-static int		key_action_(int key, t_mlx *data)
+static int	key_action_(int key, t_mlx *data)
 {
 	t_point	p;
 
 	if (key == ESC)
 	{
 		mlx_destroy_window(data->mlx, data->win);
-		return(0);
+		return (0);
 	}
 	key == UP ? data->j_y += 50 : 0;
 	key == DOWN ? data->j_y -= 50 : 0;
@@ -78,7 +78,8 @@ static int	mouse_action(int button, int x, int y, t_mlx *data)
 {
 	t_point	p;
 
-	p = (t_point){.x = data->width / 2 - data->j_x, .y = data->high / 2 - data->j_y};
+	p = (t_point){.x = data->width / 2 - data->j_x,
+		.y = data->high / 2 - data->j_y};
 	x = y;
 	button == M_UP && data->index < 6 ? data->index++ : 0;
 	button == M_DOWN && data->index > 1 ? data->index-- : 0;
