@@ -6,7 +6,7 @@
 /*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:14:12 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/25 10:27:06 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/25 12:53:01 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@
 # define LEFT	123
 # define RIGHT	124
 # define ESC	53
-# define PI		3.14159265358979323846
 
 typedef	struct			s_kernel
 {

@@ -6,11 +6,13 @@
 /*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:13:11 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/25 10:11:18 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/25 14:04:06 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+#define SIZE 64
 
 void	draw_line(t_mlx *data, t_point p0, t_point p1, int color)
 {
@@ -32,10 +34,12 @@ void	draw_line(t_mlx *data, t_point p0, t_point p1, int color)
 	}
 }
 
-int		main(void)
+int		main(int ac, char **av)
 {
 	t_mlx	data;
 
+	(void)av;
+	ac != 1 ? exit(ft_printf("Don't panic! Use main menu:)\n")) : 0;
 	data = (t_mlx){.width = 620, .high = 650,
 		.index = 1, .re = M_PI / 4, .im = M_PI / 4};
 	data.mlx = mlx_init();
