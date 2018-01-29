@@ -6,7 +6,7 @@
 /*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:22:37 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/29 12:35:16 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/29 13:49:45 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int			mandelbrot(void)
 	t_mlx	data;
 
 	data = (t_mlx){.width = WIDTH, .high = HIGH,
-		.index = 0.003, .re = -0.75, .im = 0};
+		.index = 0.003, .re = -0.75, .im = 0, .j_x = 0, .j_y = 0};
 	data.mlx = mlx_init();
 	data.win = mlx_new_window(data.mlx, data.width, data.high, "Mandelbrot");
 	data.image = mlx_new_image(data.mlx, data.width, data.high);
