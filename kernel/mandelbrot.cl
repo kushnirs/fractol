@@ -35,8 +35,8 @@ __kernel void	draw_mandelbrot(__global int *buff, int width,int high,
 
 	while ((a[0] * a[0] + b * b) < 4.0 && ++i < 128)
 	{
-		a[1] = a[0] * a[0] - b * b + re + (x - width / 2) * index;
-		b = 2 * a[0] * b + im + (y - high / 2) * index;
+		a[1] = a[0] * a[0] - b * b + re + (x - width / 2 + j_x) * index;
+		b = 2 * a[0] * b + im + (y - high / 2 + j_y) * index;
 		a[0] = a[1];
 	}
 	buff[y * width + x] = parse_color_(i, 128);

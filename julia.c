@@ -6,7 +6,7 @@
 /*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/17 02:33:31 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/25 12:01:22 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/29 12:47:20 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,14 @@
 
 static int		ft_off(int button, int x, int y, t_mlx *data)
 {
-	(void)button;
 	(void)x;
 	(void)y;
-	data->m_act = 0;
+	button == B_Q ? data->m_act = 0 : 0;
 	return (0);
 }
 
 static int		mouse_move(int x, int y, t_mlx *data)
 {
-	y = x;
 	data->m_act ? data->im = 1.5 * (y - data->high / 2) /
 		(0.5 * data->index * data->high) + data->j_y : 0;
 	data->m_act ? data->re = (x - data->width / 2) /

@@ -6,7 +6,7 @@
 /*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:22:37 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/25 10:10:11 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/29 12:35:16 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,21 @@ static int	mouse_action(int button, int x, int y, t_mlx *data)
 	return (0);
 }
 
+static int	key_action_(int key, t_mlx *data)
+{
+	if (key == ESC)
+	{
+		mlx_destroy_window(data->mlx, data->win);
+		return (0);
+	}
+	key == UP ? data->j_y += 50 : 0;
+	key == DOWN ? data->j_y -= 50 : 0;
+	key == RIGHT ? data->j_x -= 50 : 0;
+	key == LEFT ? data->j_x += 50 : 0;
+	kernel_param(data);
+	return (0);
+}
+
 int			mandelbrot(void)
 {
 	t_mlx	data;
@@ -37,7 +52,7 @@ int			mandelbrot(void)
 	(t_ui *)mlx_get_data_addr(data.image, &data.bpp, &data.sl, &data.endian);
 	host_fract("./kernel/mandelbrot.cl", "draw_mandelbrot", &data);
 	mlx_mouse_hook(data.win, &mouse_action, &data);
-	mlx_key_hook(data.win, &key_action, &data);
+	mlx_key_hook(data.win, &key_action_, &data);
 	mlx_hook(data.win, 17, 0, &close_window, &data);
 	mlx_loop(data.mlx);
 	return (0);
