@@ -6,12 +6,11 @@
 /*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:22:37 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/29 13:56:54 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/30 14:09:52 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-#include <stdio.h>
 
 static int	mouse_action(int button, int x, int y, t_mlx *data)
 {
@@ -32,8 +31,6 @@ static int	key_action_(int key, t_mlx *data)
 		mlx_destroy_window(data->mlx, data->win);
 		return (0);
 	}
-	printf("y = %f\n", data->j_y);
-	printf("x = %f\n", data->j_x);
 	key == UP ? data->j_y += 50 : 0;
 	key == DOWN ? data->j_y -= 50 : 0;
 	key == RIGHT ? data->j_x -= 50 : 0;

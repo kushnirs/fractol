@@ -6,7 +6,7 @@
 /*   By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/16 12:14:12 by sergee            #+#    #+#             */
-/*   Updated: 2018/01/25 12:53:01 by skushnir         ###   ########.fr       */
+/*   Updated: 2018/01/30 11:42:43 by skushnir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include "minilibx/mlx.h"
 # include "libft/printf/ft_printf.h"
 
-# define DEVICE_TYPE CL_DEVICE_TYPE_GPU
+# define DEVICE_TYPE CL_DEVICE_TYPE_CPU
 # define HIGH	1300
 # define WIDTH	2000
 # define B_A	0
