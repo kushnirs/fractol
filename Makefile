@@ -6,14 +6,14 @@
 #    By: skushnir <skushnir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/01/09 11:17:10 by skushnir          #+#    #+#              #
-#    Updated: 2018/01/25 10:13:37 by skushnir         ###   ########.fr        #
+#    Updated: 2018/07/20 15:51:09 by skushnir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
 
 SRC =  fractol.c utility.c mandelbrot.c julia.c tree.c square.c leaf.c \
-	   triangle.c triangle2.c manage_menu.c star.c opencl.c
+	   triangle.c triangle2.c manage_menu.c star.c OpenCl.c
 
 HDR = fractol.h
 
